@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FavoritosController;
+use App\Http\Controllers\ComparacaoController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +102,17 @@ Route::put('/cliente/{id}/alugar', [ClienteController::class, 'alugar'])->name('
 Route::put('/cliente/{id}/Areserva', [ClienteController::class, 'Areserva'])->name('reserva');
 
 Route::put('/cliente/{id}/Avisita', [ClienteController::class, 'Avisita'])->name('visitaC');
+
+#Favoritos e Comparação-------------------------------------------------------------------
+Route::get('/favoritos', [FavoritosController::class, 'index'])->name('favoritos');
+Route::post('/favoritos/adicionar', [FavoritosController::class, 'adicionar'])->name('favoritos.adicionar');
+Route::delete('/favoritos/remover', [FavoritosController::class, 'remover'])->name('favoritos.remover');
+
+Route::get('/comparar', [ComparacaoController::class, 'index'])->name('comparacao');
+Route::post('/api/comparacao', [ComparacaoController::class, 'apiComparacao'])->name('api.comparacao');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/api/estatisticas', [DashboardController::class, 'apiEstatisticas'])->name('api.estatisticas');
 
 #Negociante-------------------------------------------------------------------
 Route::get('/negociante/iniN', function () {
